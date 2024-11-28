@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user']))
+  header("Location:login.php?error=2");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,19 +13,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add New Employee</title>
-     <!----===== Iconscout CSS ===== -->
-     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <!-- Iconscout CSS -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS  -->
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
+    <!-- Sidebar Navigation -->
     <nav>
-        <div class="logo-name">
+    <div class="logo-name">
             <div class="logo-image">
-                <img src="images/logo.png" alt="">
+            <img src="img/profile.jpg" alt="HR Logo">
             </div>
             <span class="logo_name">HR SYSTEM</span>
         </div>
@@ -51,9 +59,21 @@
         </div>
     </nav>
 
+    <!-- Main Content Section -->
     <section class="dashboard">
         <div class="container mt-5">
             <h2>Add New Employee</h2>
+            <?php
+                if(isset($_GET['flag'])){
+                    $f = $_GET['flag'];
+                    if($f == 1) {
+                        echo "<h5 style='color:red;'>All Fields are Required</h5>";
+                    }
+                    if($f == 2) {
+                        echo "<h5 style='color:green;'>Employee Added Successfully</h5>";
+                    }
+                }
+            ?>
             <form action="addEmployee_action.php" method="post">
                 <!-- Employee Name -->
                 <div class="row mb-3">
@@ -73,9 +93,6 @@
                         <input type="text" id="gender" name="txtGender" class="form-control" placeholder="Enter Male or Female" required>
                     </div>
                 </div>
-
-
-    
                 <!-- Employee Position -->
                 <div class="row mb-3">
                     <div class="col-md-3">
@@ -85,7 +102,6 @@
                         <input type="text" id="position" name="txtPosition" class="form-control" placeholder="Employee's Position" required>
                     </div>
                 </div>
-    
                 <!-- Employee Department -->
                 <div class="row mb-3">
                     <div class="col-md-3">
@@ -95,7 +111,6 @@
                         <input type="text" id="department" name="txtDepartment" class="form-control" placeholder="Employee's Department" required>
                     </div>
                 </div>
-    
                 <!-- Employee Email -->
                 <div class="row mb-3">
                     <div class="col-md-3">
@@ -105,7 +120,6 @@
                         <input type="email" id="email" name="txtEmail" class="form-control" placeholder="Employee's Email Address" required>
                     </div>
                 </div>
-    
                 <!-- Employee Status -->
                 <div class="row mb-3">
                     <div class="col-md-3">
@@ -118,7 +132,6 @@
                         </select>
                     </div>
                 </div>
-    
                 <!-- Employee Start Date -->
                 <div class="row mb-3">
                     <div class="col-md-3">
@@ -128,7 +141,6 @@
                         <input type="date" id="start_date" name="txtDate" class="form-control" required>
                     </div>
                 </div>
-    
                 <!-- Submit Button -->
                 <div class="row">
                     <div class="col-md-12">
@@ -138,7 +150,8 @@
             </form>
         </div>
     </section>
-    
+
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user']))
+  header("Location:login.php?error=2");
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +23,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="images/logo.png" alt="">
+            <img src="img/profile.jpg" alt="HR Logo">
             </div>
             <span class="logo_name">HR SYSTEM</span>
         </div>
@@ -29,7 +37,7 @@
                     <i class="uil uil-users-alt"></i>
                     <span class="link-name">Manage Employees</span>
                 </a></li><br>
-                <li><a href="manage_leave_requests.php">
+                <li><a href="manageLeave.php">
                     <i class="uil uil-schedule"></i>
                     <span class="link-name">Manage Leave Requests</span>
                 </a></li><br>
@@ -48,12 +56,12 @@
                     <span class="link-name">Logout</span>
                 </a></li>
                 <li class="mode">
-                    <a href="#">
+                    <!-- <a href="#">
                         <i class="uil uil-moon"></i>
                         <span class="link-name">Dark Mode</span>
-                    </a>
+                    </a> -->
                     <div class="mode-toggle">
-                        <span class="switch"></span>
+                        <!-- <span class="switch"></span> -->
                     </div>
                 </li>
             </ul>
